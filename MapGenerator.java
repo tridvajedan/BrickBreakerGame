@@ -5,8 +5,8 @@ import java.util.Random;
 public class MapGenerator {
 
     public int brickWidth,brickHeight;
-    public ArrayList<Rectangle> bricks = new ArrayList<>();
-    public ArrayList<Rectangle> startingBricks = new ArrayList<>();
+    public ArrayList<Brick> bricks = new ArrayList<>();
+    public ArrayList<Brick> startingBricks = new ArrayList<>();
     public int brickCount;
     public GameManager manager;
     public MapGenerator(int rows,int collumns,GameManager manager)
@@ -18,7 +18,7 @@ public class MapGenerator {
         {
             for(int j = 0; j < rows; j++)
             {
-                Rectangle brick = new Rectangle(i*brickWidth+80,j*brickHeight+50,brickWidth,brickHeight);
+                Brick brick = new Brick(i*brickWidth+80,j*brickHeight+50,brickWidth,brickHeight,Brick.getLuckyValue());
                 System.out.println(brick.x +" " + brick.y +" " + brick.width+" " + brick.height+" ");
                 System.out.println("---------------------------");
                 bricks.add(brick);
@@ -31,9 +31,9 @@ public class MapGenerator {
     public void draw(Graphics g2) {
         Color backgroundColor = new Color(15, 114, 114);
         Graphics2D g = (Graphics2D) g2;
-        for (Rectangle brick : bricks)
+        for (Brick brick : bricks)
         {
-            g.setColor(Color.black);
+            g.setColor(brick.color);
             g.fillRect(brick.x,brick.y,brick.width,brick.height);
             g.setStroke(new BasicStroke(3));
             g.setColor(backgroundColor);

@@ -3,14 +3,16 @@ import java.util.Random;
 
 public class Powerup {
 
-    public int powerUpValue = 15;
-    public int velx = 0, vely = 3;
+    public int powerUpValue;
+    public int velx = 0, vely = 4;
     public int x,y;
+    private final Random r = new Random();
+    private final Color c = new Color(r.nextInt(245),r.nextInt(245),r.nextInt(245));
     public Powerup(int x,int y)
     {
         this.x = x;
         this.y = y;
-        powerUpValue = getPowerUpValue();
+        this.powerUpValue = this.getPowerUpValue();
     }
 
     public void move(int x,int y)
@@ -21,23 +23,13 @@ public class Powerup {
 
     public void draw(Graphics g)
     {
-        g.setColor(Color.BLUE);
+        g.setColor(c);
         g.drawOval(x,y,30,30);
         g.fillOval(x,y,30,30);
     }
 
     public int getPowerUpValue()
     {
-        Random r = new Random();
-        int value = 0;
-        if(r.nextInt(3) == 2)
-        {
-            value = -15;
-        }
-        else
-        {
-            value = 15;
-        }
-        return value;
+        return r.nextInt(3) == 2 ? -15 : 15;
     }
 }

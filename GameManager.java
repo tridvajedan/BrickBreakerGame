@@ -49,8 +49,7 @@ public class GameManager extends JPanel implements ActionListener, KeyListener {
         generator = new MapGenerator(3,7,this);
         running = true;
         powerUpManager = new PowerUpManager(this);
-    //    powerUpManager.addPowerup(new Powerup(500,this.getHeight()));
-        paddlevelx = 15;paddlevely = 15;
+        paddlevelx = 20;paddlevely = 20;
         ballx = 505;bally = 670;velx = 5;vely = 5;
         ballsizex = 40;ballsizey = 40;
         paddlex = 450;paddley = 725;
@@ -74,8 +73,8 @@ public class GameManager extends JPanel implements ActionListener, KeyListener {
         g.drawRect(0,0,this.getWidth(),this.getHeight());
         g.fillRect(0,0,getWidth(),getHeight());
 
-        powerUpManager.draw(g);
         generator.draw(g);
+        powerUpManager.draw(g);
 
         g.setColor(Color.white);
         g.drawString("Can flame " + Boolean.toString(canFlame),20,20);
@@ -89,7 +88,7 @@ public class GameManager extends JPanel implements ActionListener, KeyListener {
             g.setColor(firecolor);
         }
         else {
-            g.setColor(Color.YELLOW);
+            g.setColor(new Color(98, 31, 146));
         }
         g.drawOval(ballx,bally,ballsizex,ballsizey);
         g.fillOval(ballx,bally,ballsizex,ballsizey);
@@ -150,7 +149,7 @@ public class GameManager extends JPanel implements ActionListener, KeyListener {
                 System.out.println("Game Over!");
                 running = false;
             }
-       //     powerUpManager.spawn();
+            powerUpManager.spawn();
             this.repaint();
         }
     }
